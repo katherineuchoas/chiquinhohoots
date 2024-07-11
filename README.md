@@ -4,7 +4,9 @@
 
 Welcome to the Quiz Game App, a mobile application designed to entertain and challenge you with a variety of quiz questions. Built with React Native and Expo, our app not only provides a fun experience but also includes a ranking system to showcase the top players.
 
-[![banner](https://github.com/katherineuchoas/chiquinhohoots/blob/main/app.gif)](https://github.com/katherineuchoas/chiquinhohoots/blob/main/app.gif)
+<div align="center">
+  <img src="https://github.com/katherineuchoas/chiquinhohoots/blob/main/app.gif" alt="banner"/>
+</div>
 
 ## 🚀 Technologies
 
