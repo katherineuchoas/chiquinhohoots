@@ -1,20 +1,35 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from './screens/HomeScreen';
+import GameScreen from './screens/GameScreen';
+import FinishScreen from './screens/FinishScreen';
+import VideoPlayer from './components/VideoPlayer';
+import RankingScreen from './screens/RankingScreen';
 
-export default function App() {
+const Stack = createStackNavigator();
+
+const App = () => {
+  const [videoPlayed, setVideoPlayed] = useState(false);
+
+  const handleVideoEnd = () => {
+    setVideoPlayed(true);
+  };
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Home">
+          {(props) => <HomeScreen {...props} videoPlayed={videoPlayed} />}
+        </Stack.Screen>
+        <Stack.Screen name="GameScreen" component={GameScreen} />
+        <Stack.Screen name="FinishScreen" component={FinishScreen} />
+        <Stack.Screen name="RankingScreen" component={RankingScreen} />
+      </Stack.Navigator>
+      {!videoPlayed && <VideoPlayer source={require('./assets/intro.mp4')} onEnd={handleVideoEnd} />}
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
